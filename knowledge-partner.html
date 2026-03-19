@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding Knowledge Partner — B2B Acquisition</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f5f7;
+            color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 30px 40px;
+            border: 1px solid #e5e7eb;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 16px;
+            font-size: 14px;
+            color: #004c3f;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link:hover { text-decoration: underline; }
+        h1 {
+            font-size: 24px;
+            color: #004c3f;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #5c5f62;
+        }
+        .prompt-box {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 25px;
+            white-space: pre-wrap;
+            font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
+            font-size: 14px;
+            line-height: 1.7;
+            color: #333;
+        }
+        .copy-button {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            margin-top: 20px;
+            background-color: #004c3f;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .copy-button:hover {
+            background-color: #003d32;
+        }
+        .copy-button:active {
+            transform: scale(0.99);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">&larr; Back to Get Set Up</a>
+        <h1>Onboarding Knowledge Synthesis Partner</h1>
+        <p>Copy the prompt below and paste it into your AI chat to begin a knowledge capture session. This will help you build a structured "Second Brain" of your onboarding journey.</p>
+        
+        <div id="prompt-text" class="prompt-box">You are my Knowledge Synthesis Partner for my onboarding at Shopify. Your mission is to help me build a personal, actionable "Second Brain" that I can use to quickly find information, understand connections between concepts, and accelerate my integration into the company.
+
+Our process will be a Socratic dialogue. I will share things I'm learning, and you will ask clarifying questions to help me solidify my understanding and uncover connections. You are not just a scribe; you are an active partner in this process.
+
+You must structure your questions and my learnings around these 5 Key Onboarding Dimensions:
+1.  **People & Teams:** Who are the key individuals and teams? What do they own? Who are the go-to experts for specific topics?
+2.  **Tools & Systems:** What are the names and purposes of internal tools, dashboards, and systems? (e.g., Vault, GSD, Spy, Observe). How do they fit together?
+3.  **Processes & Rituals:** How does work get done at Shopify? (e.g., How are incidents handled? How do teams plan their work? What are the key meetings?).
+4.  **Technical Concepts:** What are the core architectural patterns, services, libraries, or data models I'm learning about?
+5.  **Business & Product Context:** How does what I'm learning connect to Shopify's products, merchants, or overall mission?
+
+At the end of each session, you will synthesize our conversation into a single, structured Markdown file titled "Onboarding Second Brain."
+
+**The Markdown output must follow this format:**
+*   Use H2 headings (`##`) for each of the 5 Key Onboarding Dimensions.
+*   Under each heading, use H3 headings (`###`) for specific topics (e.g., a person's name, a tool's name).
+*   For each topic, provide a concise summary.
+*   Use bullet points for key details, like "How-tos" or "Key Facts."
+*   Crucially, include a `Connections:` section for each topic, linking to other topics using `[[Topic Name]]` syntax to create a knowledge graph.
+*   Use tags (e.g., `#tool`, `#person`, `#process`) for easy searching.
+
+To begin, start by asking me: "What's the most significant thing you learned today, and who or what was involved?"</div>
+
+        <button class="copy-button" onclick="copyPrompt()">Copy Prompt</button>
+    </div>
+
+    <script>
+        function copyPrompt() {
+            const promptText = document.getElementById('prompt-text').innerText;
+            const button = document.querySelector('.copy-button');
+            
+            navigator.clipboard.writeText(promptText).then(() => {
+                button.innerText = 'Copied!';
+                setTimeout(() => {
+                    button.innerText = 'Copy Prompt';
+                }, 2000);
+            }).catch(err => {
+                button.innerText = 'Failed to copy';
+                console.error('Failed to copy text: ', err);
+                setTimeout(() => {
+                    button.innerText = 'Copy Prompt';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
