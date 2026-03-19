@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Second Brain — B2B Onboarding</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f8f9fb;
+      --surface: #ffffff;
+      --border: #e2e6ed;
+      --text: #1a1d23;
+      --text-secondary: #5f6876;
+      --accent: #008060;
+      --accent-light: #e6f5f0;
+      --accent-dark: #004c3f;
+      --warn: #dc2626;
+      --warn-light: #fef2f2;
+      --radius: 12px;
+      --shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      --shadow-lg: 0 10px 30px rgba(0,0,0,.08);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--accent); }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); padding: 0 2rem;
+    }
+    nav .inner { max-width: 900px; margin: auto; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    nav .logo { font-weight: 700; font-size: 1.1rem; color: var(--accent); }
+    nav a.back { text-decoration: none; color: var(--text-secondary); font-size: .9rem; font-weight: 500; }
+    nav a.back:hover { color: var(--accent); }
+
+    .container { max-width: 900px; margin: auto; padding: 2.5rem 2rem 4rem; }
+
+    h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: .25rem; }
+    .subtitle { color: var(--text-secondary); font-size: 1rem; margin-bottom: 1rem; }
+    .role-badge {
+      display: inline-block; padding: .3rem .75rem; border-radius: 6px;
+      background: var(--accent-light); color: var(--accent-dark);
+      font-size: .85rem; font-weight: 600; margin-bottom: 2rem;
+    }
+
+    .toc {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.25rem 1.5rem; margin-bottom: 2rem; box-shadow: var(--shadow);
+    }
+    .toc h3 { font-size: .9rem; font-weight: 700; margin-bottom: .5rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: .05em; }
+    .toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; }
+    .toc a {
+      display: inline-block; padding: .35rem .75rem; border-radius: 6px;
+      background: var(--bg); border: 1px solid var(--border); text-decoration: none;
+      font-size: .85rem; font-weight: 500; color: var(--text); transition: all .15s;
+    }
+    .toc a:hover { border-color: var(--accent); color: var(--accent); }
+
+    h2 {
+      font-size: 1.5rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem;
+      padding-bottom: .5rem; border-bottom: 2px solid var(--accent);
+    }
+
+    .entry {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow);
+    }
+    .entry h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: .15rem; }
+    .entry .role { font-size: .85rem; color: var(--text-secondary); font-weight: 500; margin-bottom: .75rem; }
+    .entry h4 { font-size: .9rem; font-weight: 700; margin-top: 1rem; margin-bottom: .35rem; color: var(--accent-dark); }
+    .entry p { font-size: .9rem; color: var(--text-secondary); margin-bottom: .5rem; }
+    .entry ul { font-size: .9rem; color: var(--text-secondary); padding-left: 1.3rem; margin-bottom: .5rem; }
+    .entry li { margin-bottom: .25rem; }
+    .entry ol { font-size: .9rem; color: var(--text-secondary); padding-left: 1.3rem; margin-bottom: .5rem; }
+    .entry ol li { margin-bottom: .25rem; }
+    .entry .tag { display: inline-block; padding: .15rem .5rem; border-radius: 4px; font-size: .75rem; font-weight: 600; margin-right: .35rem; margin-top: .5rem; }
+    .tag-person { background: #ede9fe; color: #6d28d9; }
+    .tag-tool { background: #dbeafe; color: #1d4ed8; }
+    .tag-process { background: #fef3c7; color: #92400e; }
+    .tag-product { background: var(--accent-light); color: var(--accent-dark); }
+
+    .alert {
+      background: var(--warn-light); border: 1px solid #fecaca; border-radius: 8px;
+      padding: .85rem 1rem; margin: .75rem 0; font-size: .85rem; color: #991b1b;
+    }
+    .alert strong { color: var(--warn); }
+
+    .red-flag { color: var(--warn); }
+
+    .numbered-list { counter-reset: item; list-style: none; padding-left: 0; }
+    .numbered-list li { counter-increment: item; position: relative; padding-left: 2rem; margin-bottom: .5rem; }
+    .numbered-list li::before {
+      content: counter(item); position: absolute; left: 0; top: 1px;
+      width: 1.4rem; height: 1.4rem; border-radius: 50%; background: var(--accent);
+      color: #fff; font-size: .75rem; font-weight: 700; display: flex; align-items: center; justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 1.6rem; }
+      .container { padding: 1.5rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <div class="logo">Second Brain</div>
+    <a href="index.html" class="back">&larr; Back to Get Set Up</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h1>B2B Onboarding — Second Brain</h1>
+  <div class="role-badge">Sales Lead · Mid-Market / Large Account · B2B Product</div>
+
+  <div class="toc">
+    <h3>Jump to</h3>
+    <ul>
+      <li><a href="#people">People & Teams</a></li>
+      <li><a href="#tools">Tools & Systems</a></li>
+      <li><a href="#processes">Processes & Rituals</a></li>
+      <li><a href="#technical">Technical Concepts</a></li>
+      <li><a href="#business">Business & Product Context</a></li>
+    </ul>
+  </div>
+
+  <!-- ────────── PEOPLE & TEAMS ────────── -->
+  <h2 id="people">People & Teams</h2>
+
+  <div class="entry">
+    <h3>Callum</h3>
+    <div class="role">Manager / Approval Authority for B2B deals</div>
+    <h4>Responsibilities</h4>
+    <ul>
+      <li>Must approve any Category 2 or 3 opportunities in the PMF framework</li>
+      <li>Required partner for working through Product Market Fit assessments on deals over $10M</li>
+      <li>Escalation point for complex qualification decisions</li>
+    </ul>
+    <h4>How-To</h4>
+    <ul>
+      <li>For any opp that scores Category 2/3 in PMF framework → get Callum's approval before proceeding</li>
+      <li>For deals &gt;$10M → upload technical assessment to NotebookLM, work through PMF with Callum</li>
+    </ul>
+    <span class="tag tag-person">#person</span>
+    <span class="tag tag-process">#pmf</span>
+  </div>
+
+  <div class="entry">
+    <h3>B2B Sales Team Structure</h3>
+    <div class="role">35 Account Executives total (including Accel team)</div>
+    <h4>Team Evolution</h4>
+    <ul>
+      <li>Spun up at beginning of 2025</li>
+      <li>Initially targeted: Manufacturing, construction, industrial verticals</li>
+      <li>Pivoted after 2 months due to product-market fit issues</li>
+      <li><strong>Now: ONLY this team can sell B2B</strong> (previously anyone in org could sell it)</li>
+    </ul>
+    <h4>Current Focus — 4 Primary Themes</h4>
+    <ol class="numbered-list">
+      <li>Opportunity valuation</li>
+      <li>Opportunity technical solutioning</li>
+      <li>Partner ecosystem builds</li>
+      <li>Product development</li>
+    </ol>
+    <h4>Mission</h4>
+    <p>Find product-market fit, fix qualification and solutioning, create highly specialized sellers with deep B2B expertise.</p>
+    <span class="tag tag-person">#team</span>
+    <span class="tag tag-process">#strategy</span>
+  </div>
+
+  <div class="entry">
+    <h3>Partner Ecosystem Team</h3>
+    <div class="role">4 partner managers</div>
+    <h4>Function</h4>
+    <ul>
+      <li>Responding well to B2B opportunities</li>
+      <li>Support ERP integrations and complex technical builds</li>
+      <li><strong>29% of launches stalled on complex customer partner builds</strong></li>
+    </ul>
+    <h4>Key Insight</h4>
+    <p>Partner quality matters for implementation success and avoiding leaky monetization.</p>
+    <span class="tag tag-person">#team</span>
+    <span class="tag tag-product">#partners</span>
+  </div>
+
+  <!-- ────────── TOOLS & SYSTEMS ────────── -->
+  <h2 id="tools">Tools & Systems</h2>
+
+  <div class="entry">
+    <h3>NotebookLM — Sales Assistant</h3>
+    <div class="role">Product Market Fit (PMF) assessment tool using AI</div>
+    <h4>How It Works</h4>
+    <ol>
+      <li>Upload the technical assessment as a source document</li>
+      <li>Ask the Sales Assistant: <em>"What is the product market fit based on this technical assessment?"</em></li>
+      <li>Work through the analysis with Callum</li>
+      <li><strong>Remove the source</strong> after completing the assessment (data security/tool hygiene)</li>
+    </ol>
+    <h4>When Required</h4>
+    <ul>
+      <li>Mandatory for ANY opportunity over $10M</li>
+      <li>For Category 2/3 opportunities that need approval</li>
+    </ul>
+    <p>Access: Only available to specific team members and managers.</p>
+    <span class="tag tag-tool">#tool</span>
+    <span class="tag tag-process">#pmf</span>
+  </div>
+
+  <div class="entry">
+    <h3>One List (Salesforce)</h3>
+    <div class="role">Product feedback collection system</div>
+    <div class="alert"><strong>Critical:</strong> This is the ONLY way the product team looks at feedback.</div>
+    <ul>
+      <li>Found on the Account object in Salesforce</li>
+      <li><strong>MANDATORY</strong> for the B2B team to use for all product feedback</li>
+    </ul>
+    <span class="tag tag-tool">#tool</span>
+    <span class="tag tag-product">#feedback</span>
+  </div>
+
+  <div class="entry">
+    <h3>Shopify Flow</h3>
+    <div class="role">Core automation tool for Shopify platform</div>
+    <h4>B2B Capabilities</h4>
+    <ul>
+      <li>Supports both Companies and Company Locations</li>
+      <li>Enables complete control over customer and staff communications automation</li>
+      <li>B2B order triggers for invoice delivery automation flows</li>
+    </ul>
+    <h4>Value Proposition</h4>
+    <p>"Clicks not code" automation — differentiator vs. competitors.</p>
+    <h4>Use Cases</h4>
+    <ul>
+      <li>Automated invoice delivery when B2B order is placed</li>
+      <li>Customer communication workflows</li>
+      <li>Staff notification triggers</li>
+    </ul>
+    <span class="tag tag-tool">#tool</span>
+    <span class="tag tag-product">#automation</span>
+  </div>
+
+  <!-- ────────── TECHNICAL CONCEPTS ────────── -->
+  <h2 id="technical">Technical Concepts</h2>
+
+  <div class="entry">
+    <h3>Companies (B2B Primitive)</h3>
+    <div class="role">Foundational data structure for B2B in Shopify</div>
+    <div class="alert"><strong>⚠️ CRITICAL FOR BILLING</strong> — Getting this wrong means merchants overpay.</div>
+    <h4>Structure</h4>
+    <ul>
+      <li><strong>Company</strong> = Parent organization for one or more locations</li>
+      <li><strong>Company Location</strong> = The actual business you're selling to</li>
+      <li><strong>Customer</strong> = Individual person who purchases on behalf of the business</li>
+    </ul>
+    <h4>Why It's Critical</h4>
+    <ul>
+      <li>Orders tied to a Company → billed at <strong>B2B VPF rate (0.18%)</strong></li>
+      <li>Orders NOT tied to a Company → billed at <strong>DTC VPF rate (0.40%)</strong> — merchant overpays!</li>
+      <li>Required for proper GMV classification in billing system</li>
+    </ul>
+    <h4>Red Flags (Implementation Errors)</h4>
+    <ul>
+      <li class="red-flag">❌ Tagging customers as "B2B" instead of using Companies primitive</li>
+      <li class="red-flag">❌ Using discount apps for B2B pricing instead of proper catalog assignment</li>
+      <li class="red-flag">❌ Custom functions without Company association</li>
+    </ul>
+    <span class="tag tag-product">#b2b-primitive</span>
+    <span class="tag tag-process">#billing</span>
+  </div>
+
+  <div class="entry">
+    <h3>Catalogs</h3>
+    <div class="role">Tailor pricing and product availability to every customer, in any currency</div>
+    <h4>How It Works</h4>
+    <ul>
+      <li>Assign specific price lists to specific customers/company locations</li>
+      <li>Control which products are visible to which customers</li>
+      <li>Support multiple currencies</li>
+    </ul>
+    <div class="alert"><strong>Critical Requirement:</strong> ALL B2B solutions MUST leverage Catalogs. Using discount apps instead of Catalogs = red flag for implementation issues.</div>
+    <span class="tag tag-product">#b2b-primitive</span>
+    <span class="tag tag-tool">#catalogs</span>
+  </div>
+
+  <!-- ────────── PROCESSES & RITUALS ────────── -->
+  <h2 id="processes">Processes & Rituals</h2>
+
+  <div class="entry">
+    <h3>PMF Framework (Product Market Fit)</h3>
+    <div class="role">Assess whether an opportunity is a good fit for Shopify B2B</div>
+    <h4>Scoring System</h4>
+    <ul>
+      <li>Categories: 1, 2, 3, 4</li>
+      <li><strong>Category 2 or 3:</strong> Requires Callum's approval to proceed</li>
+      <li><strong>PMF value of 4:</strong> CANNOT move to Closed Won — automatic disqualification</li>
+    </ul>
+    <h4>Process</h4>
+    <ol>
+      <li>Complete technical assessment</li>
+      <li>For deals &gt;$10M: Upload to NotebookLM</li>
+      <li>Ask Sales Assistant for PMF analysis</li>
+      <li>Work through with Callum</li>
+      <li>Remove source from NotebookLM</li>
+    </ol>
+    <span class="tag tag-process">#process</span>
+    <span class="tag tag-process">#qualification</span>
+  </div>
+
+  <div class="entry">
+    <h3>Order Origination Framework</h3>
+    <div class="role">Calculate how much GMV will actually flow through Shopify</div>
+    <h4>Why It Exists</h4>
+    <p>Company revenue is a vanity metric — we must know the on-platform potential.</p>
+    <h4>Key Discovery Questions</h4>
+    <ul>
+      <li>Do you sell via EDI? Punchout? POS?</li>
+      <li>What's your estimated revenue through EDI/Punchout/POS?</li>
+      <li>What's your total annual B2B revenue?</li>
+    </ul>
+    <h4>Two Calculation Methods</h4>
+    <p><strong>Top-Down:</strong> Start with total B2B revenue, subtract non-platform channels to find on-platform GMV potential.</p>
+    <span class="tag tag-process">#process</span>
+    <span class="tag tag-process">#valuation</span>
+  </div>
+
+  <!-- ────────── BUSINESS & PRODUCT CONTEXT ────────── -->
+  <h2 id="business">Business & Product Context</h2>
+
+  <div class="entry">
+    <h3>B2B VPF Rates</h3>
+    <div class="role">Billing rates that impact merchant costs and Shopify revenue</div>
+    <ul>
+      <li><strong>B2B VPF: 0.18%</strong> — applied when orders are tied to a Company</li>
+      <li><strong>DTC VPF: 0.40%</strong> — applied when orders are NOT tied to a Company</li>
+    </ul>
+    <p>Proper Companies implementation directly impacts merchant billing accuracy and Shopify's revenue classification.</p>
+    <span class="tag tag-product">#billing</span>
+    <span class="tag tag-product">#pricing</span>
+  </div>
+
+  <div class="entry">
+    <h3>Team Pivot — Lessons Learned</h3>
+    <div class="role">Strategic context for the B2B team's current direction</div>
+    <ul>
+      <li>Team initially targeted manufacturing, construction, industrial verticals</li>
+      <li>Pivoted after 2 months due to product-market fit issues</li>
+      <li>Now focused on finding true PMF through rigorous qualification (PMF Framework)</li>
+      <li>Centralized B2B selling to this team only — no more org-wide B2B sales</li>
+      <li>29% of launches stalled on complex partner builds — partner quality is critical</li>
+    </ul>
+    <span class="tag tag-product">#strategy</span>
+    <span class="tag tag-process">#pmf</span>
+  </div>
+
+</div>
+
+</body>
+</html>
