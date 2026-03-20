@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Productivity Boosters — B2B Onboarding Hub</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f8f9fb;
+      --surface: #ffffff;
+      --border: #e2e6ed;
+      --text: #1a1d23;
+      --text-secondary: #5f6876;
+      --accent: #008060;
+      --accent-light: #e6f5f0;
+      --accent-dark: #004c3f;
+      --purple: #7c3aed;
+      --purple-light: #ede9fe;
+      --radius: 12px;
+      --shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      --shadow-lg: 0 10px 30px rgba(0,0,0,.08);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--accent); }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); padding: 0 2rem;
+    }
+    nav .inner { max-width: 900px; margin: auto; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    nav .logo { font-weight: 700; font-size: 1.1rem; color: var(--purple); }
+    nav a.back { text-decoration: none; color: var(--text-secondary); font-size: .9rem; font-weight: 500; }
+    nav a.back:hover { color: var(--accent); }
+
+    .container { max-width: 900px; margin: auto; padding: 2.5rem 2rem 4rem; }
+
+    h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: .5rem; }
+    .subtitle { color: var(--text-secondary); font-size: 1rem; margin-bottom: .5rem; }
+
+    .callout {
+      background: var(--purple-light); border: 1px solid #c4b5fd;
+      border-radius: var(--radius); padding: 1.15rem 1.5rem;
+      margin-bottom: 2rem; font-size: .9rem; color: #4c1d95;
+    }
+    .callout strong { color: var(--purple); }
+
+    h2 {
+      font-size: 1.25rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem;
+      padding-bottom: .4rem; border-bottom: 2px solid var(--purple);
+      color: var(--purple);
+    }
+
+    .tool-list { display: flex; flex-direction: column; gap: 1rem; }
+
+    .tool-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem;
+      box-shadow: var(--shadow); transition: box-shadow .2s, transform .2s;
+      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+      text-decoration: none; color: var(--text);
+    }
+    .tool-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+
+    .tool-info { flex: 1; }
+    .tool-info h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .25rem; }
+    .tool-info p { font-size: .9rem; color: var(--text-secondary); margin: 0; }
+
+    .tool-icon {
+      flex-shrink: 0; width: 48px; height: 48px; border-radius: 10px;
+      background: var(--purple-light); display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .open-btn {
+      flex-shrink: 0; padding: .5rem 1rem; border-radius: 8px;
+      background: var(--purple); color: #fff; font-size: .8rem; font-weight: 600;
+      text-decoration: none; white-space: nowrap; transition: background .15s;
+    }
+    .open-btn:hover { background: #6d28d9; color: #fff; }
+
+    @media (max-width: 600px) {
+      .tool-card { flex-direction: column; align-items: flex-start; }
+      .open-btn { align-self: stretch; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <div class="logo">AI Productivity Boosters</div>
+    <a href="index.html" class="back">&larr; Back to Onboarding Hub</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h1>AI Productivity Boosters</h1>
+  <p class="subtitle">Internal AI tools built by talented Shopify colleagues to save time and fill productivity gaps.</p>
+
+  <div class="callout">
+    <strong>We have so many amazing AI tools at our fingertips.</strong> Many talented colleagues have taken initiative to build tools that fill productivity gaps and save time. If you come across (or build!) a valuable tool, let's add it to this list!
+  </div>
+
+  <h2>Sales & Prospecting</h2>
+  <div class="tool-list">
+
+    <a href="https://sdr-pov-generator.quick.shopify.io/" target="_blank" class="tool-card">
+      <div class="tool-icon">✍️</div>
+      <div class="tool-info">
+        <h3>POV, Talk Track & Email Generator</h3>
+        <p>Generate personalized points of view, talk tracks, and outbound emails for prospects.</p>
+      </div>
+      <span class="open-btn">Open &rarr;</span>
+    </a>
+
+    <a href="https://company-finder.quick.shopify.io/" target="_blank" class="tool-card">
+      <div class="tool-icon">🔍</div>
+      <div class="tool-info">
+        <h3>Can I Work This? — Company/Account Duplicate Finder</h3>
+        <p>Check if a company or account is already being worked before you reach out.</p>
+      </div>
+      <span class="open-btn">Open &rarr;</span>
+    </a>
+
+    <a href="https://agency-intel.quick.shopify.io/" target="_blank" class="tool-card">
+      <div class="tool-icon">🤝</div>
+      <div class="tool-info">
+        <h3>Partner Recommender Agent</h3>
+        <p>Get partner recommendations for deals and provide partner feedback.</p>
+      </div>
+      <span class="open-btn">Open &rarr;</span>
+    </a>
+
+    <a href="https://siteaudit.quick.shopify.io/" target="_blank" class="tool-card">
+      <div class="tool-icon">🌐</div>
+      <div class="tool-info">
+        <h3>Shopify Website Audit Generator</h3>
+        <p>Run an AI-powered audit of a merchant's website for sales prep and discovery.</p>
+      </div>
+      <span class="open-btn">Open &rarr;</span>
+    </a>
+
+    <a href="https://docs.google.com/document/d/1sDLl2QL35YiElh9WVIIgnQN3EBD1DhSMWKg5oKStcjs/edit?tab=t.0" target="_blank" class="tool-card">
+      <div class="tool-icon">📧</div>
+      <div class="tool-info">
+        <h3>AI Email Draft Assistant</h3>
+        <p>AI-powered email drafting guide for merchant communications.</p>
+      </div>
+      <span class="open-btn">Open &rarr;</span>
+    </a>
+
+  </div>
+
+  <h2>AI Skills & Building</h2>
+  <div class="tool-list">
+
+    <a href="https://docs.google.com/document/d/1ktXAPg5JzUtIJBQFE7fZcamvbTKMiDyeHifAtXfKvYc/edit?tab=t.0#heading=h.dp409onyxzbl" target="_blank" class="tool-card">
+      <div class="tool-icon">⚙️</div>
+      <div class="tool-info">
+        <h3>How to Set Up Cursor</h3>
+        <p>Step-by-step guide to get Cursor IDE configured and ready to use.</p>
+      </div>
+      <span class="open-btn">Open &rarr;</span>
+    </a>
+
+    <a href="https://claude-code-101.quick.shopify.io/#start" target="_blank" class="tool-card">
+      <div class="tool-icon">🧑‍💻</div>
+      <div class="tool-info">
+        <h3>Claude Code 101</h3>
+        <p>Get started with Claude Code — intro guide for building with AI.</p>
+      </div>
+      <span class="open-btn">Open &rarr;</span>
+    </a>
+
+    <a href="https://connections.quick.shopify.io/swarm.html" target="_blank" class="tool-card">
+      <div class="tool-icon">🐝</div>
+      <div class="tool-info">
+        <h3>Build a Swarm</h3>
+        <p>Create a swarm of AI agents that work together on complex tasks.</p>
+      </div>
+      <span class="open-btn">Open &rarr;</span>
+    </a>
+
+    <a href="https://skills.quick.shopify.io/#/voice-profile" target="_blank" class="tool-card">
+      <div class="tool-icon">🎙️</div>
+      <div class="tool-info">
+        <h3>Build a Personal Voice Agent</h3>
+        <p>Create an AI agent that writes and communicates in your personal voice.</p>
+      </div>
+      <span class="open-btn">Open &rarr;</span>
+    </a>
+
+    <a href="https://skills.quick.shopify.io/#/shopify-expert" target="_blank" class="tool-card">
+      <div class="tool-icon">🧠</div>
+      <div class="tool-info">
+        <h3>Build a Shopify Expert Agent Voice</h3>
+        <p>Create an AI agent with deep Shopify product expertise.</p>
+      </div>
+      <span class="open-btn">Open &rarr;</span>
+    </a>
+
+  </div>
+
+  <h2>Workflow & Updates</h2>
+  <div class="tool-list">
+
+    <a href="https://weekly-update.quick.shopify.io/" target="_blank" class="tool-card">
+      <div class="tool-icon">📝</div>
+      <div class="tool-info">
+        <h3>Weekly Contribution Update</h3>
+        <p>Generate your weekly contribution update automatically.</p>
+      </div>
+      <span class="open-btn">Open &rarr;</span>
+    </a>
+
+  </div>
+
+</div>
+
+<footer style="max-width:900px; margin:auto; padding:2rem; text-align:center; color:#5f6876; font-size:.85rem; border-top:1px solid #e2e6ed;">
+  <p>Last updated <span id="last-updated"></span> · Know of a tool that should be here? Let's add it!</p>
+</footer>
+
+<script>document.getElementById('last-updated').textContent = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });</script>
+
+</body>
+</html>
