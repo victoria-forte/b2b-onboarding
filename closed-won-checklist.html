@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Closed Won Checklist — B2B Command Centre</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f8f9fb;
+      --surface: #ffffff;
+      --border: #e2e6ed;
+      --text: #1a1d23;
+      --text-secondary: #5f6876;
+      --accent: #008060;
+      --accent-light: #e6f5f0;
+      --accent-dark: #004c3f;
+      --success: #16a34a;
+      --success-light: #f0fdf4;
+      --radius: 12px;
+      --shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      --shadow-lg: 0 10px 30px rgba(0,0,0,.08);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--accent); }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); padding: 0 2rem;
+    }
+    nav .inner { max-width: 900px; margin: auto; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    nav .logo { font-weight: 700; font-size: 1.1rem; color: var(--accent); }
+    nav a.back { text-decoration: none; color: var(--text-secondary); font-size: .9rem; font-weight: 500; }
+    nav a.back:hover { color: var(--accent); }
+
+    .container { max-width: 900px; margin: auto; padding: 2.5rem 2rem 4rem; }
+
+    h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: .5rem; }
+    .subtitle { color: var(--text-secondary); font-size: 1rem; margin-bottom: 2rem; }
+
+    .category {
+      margin-bottom: 1.5rem; border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow); border: 1px solid var(--border);
+    }
+    .category-header {
+      display: flex; align-items: center; gap: .75rem;
+      padding: 1rem 1.25rem; font-weight: 700; font-size: 1rem;
+      color: #fff; text-transform: uppercase; letter-spacing: .04em;
+    }
+    .category-header .cat-icon { font-size: 1.3rem; }
+    .category-body { background: var(--surface); padding: .5rem 0; }
+
+    .check-item {
+      display: flex; align-items: flex-start; gap: .75rem;
+      padding: .6rem 1.25rem; cursor: pointer; transition: background .15s;
+    }
+    .check-item:hover { background: #f9fafb; }
+    .check-item.checked { background: var(--success-light); }
+    .check-item.checked .cw-box { background: var(--success); border-color: var(--success); color: #fff; }
+    .check-item.checked .cw-label { text-decoration: line-through; color: var(--text-secondary); }
+
+    .cw-box {
+      flex-shrink: 0; width: 20px; height: 20px; border-radius: 5px;
+      border: 2px solid var(--border); display: flex; align-items: center; justify-content: center;
+      font-size: .7rem; transition: all .15s; margin-top: 2px;
+    }
+    .cw-label { font-size: .9rem; font-weight: 500; }
+
+    .bg-revenue { background: #6b8e23; }
+    .bg-products { background: #bdb76b; }
+    .bg-launch { background: #8fbc8f; }
+    .bg-contacts { background: #f5a623; }
+    .bg-contracts { background: #d4a017; }
+    .bg-notes { background: #c8a951; }
+    .bg-files { background: #a0855b; }
+
+    .progress-bar-container { margin-bottom: 2rem; }
+    .progress-wrap {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.25rem 1.5rem;
+      box-shadow: var(--shadow);
+    }
+    .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: .6rem; }
+    .progress-header span { font-size: .9rem; font-weight: 600; }
+    .progress-header .pct { color: var(--accent); }
+    .progress-track { height: 8px; background: var(--border); border-radius: 99px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--accent); border-radius: 99px; width: 0%; transition: width .4s ease; }
+
+    .source-link {
+      display: inline-block; margin-top: 1.5rem; font-size: .85rem;
+      color: var(--text-secondary);
+    }
+    .source-link a { font-weight: 500; }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 1.6rem; }
+      .container { padding: 1.5rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <div class="logo">Closed Won Checklist</div>
+    <a href="javascript:history.back()" class="back">&larr; Back</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h1>B2B Closed Won Checklist</h1>
+  <p class="subtitle">Use this checklist as a quick reference to ensure all necessary steps are completed for handling closed won accounts. Follow the checklist sequentially to maintain consistency and accuracy.</p>
+
+  <div class="progress-bar-container">
+    <div class="progress-wrap">
+      <div class="progress-header">
+        <span>Completion</span>
+        <span class="pct" id="pct-label">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVENUE -->
+  <div class="category">
+    <div class="category-header bg-revenue">
+      <span class="cat-icon">💰</span> Revenue
+    </div>
+    <div class="category-body">
+      <div class="check-item" data-key="cw1"><div class="cw-box"></div><div class="cw-label">Correct DTC Revenue that aligns with MVF</div></div>
+      <div class="check-item" data-key="cw2"><div class="cw-box"></div><div class="cw-label">Correct B2B Revenue that aligns with MVF</div></div>
+      <div class="check-item" data-key="cw3"><div class="cw-box"></div><div class="cw-label">Correct Retail Revenue that aligns with the MVF</div></div>
+    </div>
+  </div>
+
+  <!-- PRODUCTS -->
+  <div class="category">
+    <div class="category-header bg-products">
+      <span class="cat-icon">📦</span> Products
+    </div>
+    <div class="category-body">
+      <div class="check-item" data-key="cw4"><div class="cw-box"></div><div class="cw-label">DTC - Standard added</div></div>
+      <div class="check-item" data-key="cw5"><div class="cw-box"></div><div class="cw-label">B2B Sales Price = $0</div></div>
+      <div class="check-item" data-key="cw6"><div class="cw-box"></div><div class="cw-label">POS locations (if applicable)</div></div>
+      <div class="check-item" data-key="cw7"><div class="cw-box"></div><div class="cw-label">B2B Payments = 50% of B2B Revenue from MVF</div></div>
+      <div class="check-item" data-key="cw8"><div class="cw-box"></div><div class="cw-label">DTC Payments = 75% of DTC Revenue from MVF</div></div>
+      <div class="check-item" data-key="cw9"><div class="cw-box"></div><div class="cw-label">Retail Payments = 80% of Retail Revenue from MVF</div></div>
+    </div>
+  </div>
+
+  <!-- LAUNCH & GO LIVE -->
+  <div class="category">
+    <div class="category-header bg-launch">
+      <span class="cat-icon">🚀</span> Launch & Go Live
+    </div>
+    <div class="category-body">
+      <div class="check-item" data-key="cw10"><div class="cw-box"></div><div class="cw-label">Solution Engineer attached</div></div>
+      <div class="check-item" data-key="cw11"><div class="cw-box"></div><div class="cw-label">Partner attached</div></div>
+      <div class="check-item" data-key="cw12"><div class="cw-box"></div><div class="cw-label">Technical Assessment uploaded</div></div>
+      <div class="check-item" data-key="cw13"><div class="cw-box"></div><div class="cw-label">Go Live Date aligns with MVF</div></div>
+    </div>
+  </div>
+
+  <!-- KEY CONTACTS -->
+  <div class="category">
+    <div class="category-header bg-contacts">
+      <span class="cat-icon">👥</span> Key Contacts
+    </div>
+    <div class="category-body">
+      <div class="check-item" data-key="cw14"><div class="cw-box"></div><div class="cw-label">All contacts engaged uploaded to opportunity</div></div>
+      <div class="check-item" data-key="cw15"><div class="cw-box"></div><div class="cw-label">Launch date aligns to MVF launch date</div></div>
+      <div class="check-item" data-key="cw16"><div class="cw-box"></div><div class="cw-label">Launch Contact for B2B & DTC</div></div>
+    </div>
+  </div>
+
+  <!-- CONTRACTS -->
+  <div class="category">
+    <div class="category-header bg-contracts">
+      <span class="cat-icon">📝</span> Contracts
+    </div>
+    <div class="category-body">
+      <div class="check-item" data-key="cw17"><div class="cw-box"></div><div class="cw-label">Trial store set up</div></div>
+      <div class="check-item" data-key="cw18"><div class="cw-box"></div><div class="cw-label">Credit card on file</div></div>
+      <div class="check-item" data-key="cw19"><div class="cw-box"></div><div class="cw-label">Completed MVF</div></div>
+      <div class="check-item" data-key="cw20"><div class="cw-box"></div><div class="cw-label">MVF includes B2B Payments</div></div>
+      <div class="check-item" data-key="cw21"><div class="cw-box"></div><div class="cw-label">MVF includes DTC Payments (if applicable)</div></div>
+      <div class="check-item" data-key="cw22"><div class="cw-box"></div><div class="cw-label">Signed contract</div></div>
+    </div>
+  </div>
+
+  <!-- NOTES -->
+  <div class="category">
+    <div class="category-header bg-notes">
+      <span class="cat-icon">📋</span> Notes
+    </div>
+    <div class="category-body">
+      <div class="check-item" data-key="cw23"><div class="cw-box"></div><div class="cw-label">Digital Sales Room link</div></div>
+      <div class="check-item" data-key="cw24"><div class="cw-box"></div><div class="cw-label">Discovery call notes</div></div>
+    </div>
+  </div>
+
+  <!-- FILES -->
+  <div class="category">
+    <div class="category-header bg-files">
+      <span class="cat-icon">📁</span> Files
+    </div>
+    <div class="category-body">
+      <div class="check-item" data-key="cw25"><div class="cw-box"></div><div class="cw-label">Detailed mutual plan with milestones</div></div>
+      <div class="check-item" data-key="cw26"><div class="cw-box"></div><div class="cw-label">Email screenshot of intent to use Shopify B2B</div></div>
+      <div class="check-item" data-key="cw27"><div class="cw-box"></div><div class="cw-label">Downloaded MVF & attach to files</div></div>
+      <div class="check-item" data-key="cw28"><div class="cw-box"></div><div class="cw-label">Proof of Manager Involvement</div></div>
+    </div>
+  </div>
+
+  <div class="source-link">
+    Source: <a href="https://docs.google.com/document/d/1TbUft5X3_YhKxKWaG0zNEl_rn6XFKYLR9N76v5jOk8Q/edit?tab=t.0" target="_blank">B2B Closed Won Checklist (Google Doc)</a>
+  </div>
+</div>
+
+<footer style="max-width:900px; margin:auto; padding:2rem; text-align:center; color:#5f6876; font-size:.85rem; border-top:1px solid #e2e6ed;">
+  <p>Last updated <span id="last-updated"></span> · Maintained by the B2B Sales Team</p>
+</footer>
+
+<script>
+  const STORAGE_KEY = 'closed-won-checklist';
+  const items = document.querySelectorAll('.check-item');
+
+  function loadState() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; } }
+  function saveState(s) { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }
+
+  function updateProgress() {
+    const state = loadState();
+    const total = items.length;
+    const done = Object.values(state).filter(Boolean).length;
+    const pct = Math.round((done / total) * 100);
+    document.getElementById('pct-label').textContent = pct + '%';
+    document.getElementById('progress-fill').style.width = pct + '%';
+  }
+
+  function render() {
+    const state = loadState();
+    items.forEach(el => {
+      const key = el.dataset.key;
+      if (state[key]) { el.classList.add('checked'); el.querySelector('.cw-box').textContent = '✓'; }
+      else { el.classList.remove('checked'); el.querySelector('.cw-box').textContent = ''; }
+    });
+    updateProgress();
+  }
+
+  items.forEach(el => {
+    el.addEventListener('click', () => {
+      const state = loadState();
+      state[el.dataset.key] = !state[el.dataset.key];
+      saveState(state);
+      render();
+    });
+  });
+
+  render();
+  document.getElementById('last-updated').textContent = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+</script>
+
+</body>
+</html>
