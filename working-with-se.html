@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Working with your SE — B2B Command Centre</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f8f9fb;
+      --surface: #ffffff;
+      --border: #e2e6ed;
+      --text: #1a1d23;
+      --text-secondary: #5f6876;
+      --accent: #008060;
+      --accent-light: #e6f5f0;
+      --accent-dark: #004c3f;
+      --radius: 12px;
+      --shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      --shadow-lg: 0 10px 30px rgba(0,0,0,.08);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--accent); }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); padding: 0 2rem;
+    }
+    nav .inner { max-width: 900px; margin: auto; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    nav .logo { font-weight: 700; font-size: 1.1rem; color: var(--accent); }
+    nav a.back { text-decoration: none; color: var(--text-secondary); font-size: .9rem; font-weight: 500; }
+    nav a.back:hover { color: var(--accent); }
+
+    .container { max-width: 900px; margin: auto; padding: 2.5rem 2rem 4rem; }
+
+    h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: .5rem; }
+    .subtitle { color: var(--text-secondary); font-size: 1rem; margin-bottom: 2rem; }
+
+    .main-link {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem;
+      box-shadow: var(--shadow); transition: box-shadow .2s, transform .2s;
+      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+      text-decoration: none; color: var(--text);
+    }
+    .main-link:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+
+    .main-link .info { flex: 1; }
+    .main-link h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: .3rem; }
+    .main-link p { font-size: .9rem; color: var(--text-secondary); margin: 0; }
+    .main-link .url { font-size: .8rem; color: var(--accent); margin-top: .4rem; }
+
+    .main-link .icon {
+      flex-shrink: 0; width: 56px; height: 56px; border-radius: 12px;
+      background: var(--accent-light); display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+    }
+
+    .open-btn {
+      flex-shrink: 0; padding: .6rem 1.25rem; border-radius: 8px;
+      background: var(--accent); color: #fff; font-size: .85rem; font-weight: 600;
+      text-decoration: none; white-space: nowrap; transition: background .15s;
+    }
+    .open-btn:hover { background: var(--accent-dark); color: #fff; }
+
+    @media (max-width: 600px) {
+      .main-link { flex-direction: column; align-items: flex-start; }
+      .open-btn { align-self: stretch; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <div class="logo">Working with your SE</div>
+    <a href="javascript:history.back()" class="back">&larr; Back</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h1>Working with your SE</h1>
+  <p class="subtitle">The SE-AE partnership is critical to running a tight sales motion. Use the resource below to align on process, expectations, and how to collaborate effectively.</p>
+
+  <a href="https://se-ae-process-alignment.quick.shopify.io/" target="_blank" class="main-link">
+    <div class="icon">🤝</div>
+    <div class="info">
+      <h3>SE-AE Process Alignment</h3>
+      <p>Interactive guide covering the SE-AE working model — when to engage your SE, how to run joint calls, handoff expectations, and collaboration best practices.</p>
+      <div class="url">se-ae-process-alignment.quick.shopify.io</div>
+    </div>
+    <span class="open-btn">Open &rarr;</span>
+  </a>
+</div>
+
+<footer style="max-width:900px; margin:auto; padding:2rem; text-align:center; color:#5f6876; font-size:.85rem; border-top:1px solid #e2e6ed;">
+  <p>Last updated <span id="last-updated"></span> · Maintained by the B2B Sales Team</p>
+</footer>
+
+<script>document.getElementById('last-updated').textContent = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });</script>
+
+</body>
+</html>
