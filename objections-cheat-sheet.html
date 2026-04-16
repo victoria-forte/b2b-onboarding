@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B2B Objections Cheat Sheet — B2B Command Centre</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f8f9fb; --surface: #ffffff; --border: #e2e6ed;
+      --text: #1a1d23; --text-secondary: #5f6876;
+      --accent: #008060; --accent-light: #e6f5f0; --accent-dark: #004c3f;
+      --radius: 12px;
+      --shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--accent); }
+
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; }
+    nav .inner { max-width: 960px; margin: auto; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    nav .logo { font-weight: 700; font-size: 1.1rem; color: var(--accent); }
+    nav a.back { text-decoration: none; color: var(--text-secondary); font-size: .9rem; font-weight: 500; }
+    nav a.back:hover { color: var(--accent); }
+
+    .container { max-width: 960px; margin: auto; padding: 2.5rem 2rem 4rem; }
+    h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: .5rem; }
+    .subtitle { color: var(--text-secondary); font-size: 1rem; margin-bottom: .5rem; }
+
+    .toc { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-bottom: 2rem; box-shadow: var(--shadow); }
+    .toc h3 { font-size: .9rem; font-weight: 700; margin-bottom: .5rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: .05em; }
+    .toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; }
+    .toc a { display: inline-block; padding: .35rem .75rem; border-radius: 6px; background: var(--bg); border: 1px solid var(--border); text-decoration: none; font-size: .85rem; font-weight: 500; color: var(--text); transition: all .15s; }
+    .toc a:hover { border-color: var(--accent); color: var(--accent); }
+
+    .callout { background: var(--accent-light); border: 1px solid #b8e6d6; border-radius: var(--radius); padding: 1.15rem 1.5rem; margin-bottom: 2rem; font-size: .9rem; }
+    .callout strong { color: var(--accent-dark); }
+
+    h2 { font-size: 1.4rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: .5rem; border-bottom: 2px solid var(--accent); }
+
+    .objection { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 1.25rem; box-shadow: var(--shadow); overflow: hidden; }
+    .objection summary { padding: 1.1rem 1.25rem; font-weight: 700; cursor: pointer; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--text); }
+    .objection summary::after { content: '+'; font-size: 1.2rem; color: var(--text-secondary); }
+    .objection[open] summary::after { content: '−'; }
+    .objection[open] summary { border-bottom: 1px solid var(--border); }
+    .objection .body { padding: 1.25rem; font-size: .9rem; color: var(--text-secondary); line-height: 1.75; }
+    .objection .body h4 { color: var(--text); font-size: .9rem; font-weight: 700; margin-top: 1rem; margin-bottom: .35rem; }
+    .objection .body h4:first-child { margin-top: 0; }
+    .objection .body ul { padding-left: 1.3rem; margin-bottom: .5rem; }
+    .objection .body li { margin-bottom: .3rem; }
+    .objection .body p { margin-bottom: .5rem; }
+    .objection .body blockquote { border-left: 3px solid var(--accent); padding: .5rem 1rem; margin: .75rem 0; background: var(--accent-light); border-radius: 0 8px 8px 0; font-style: italic; color: var(--accent-dark); }
+
+    .framework { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow); }
+    .framework h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .75rem; }
+    .framework ol, .framework ul { padding-left: 1.3rem; font-size: .9rem; color: var(--text-secondary); }
+    .framework li { margin-bottom: .35rem; }
+    .framework p { font-size: .9rem; color: var(--text-secondary); margin-bottom: .5rem; }
+
+    .pro-tips { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); }
+    .pro-tips h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .75rem; }
+    .pro-tips ol { padding-left: 1.3rem; font-size: .9rem; color: var(--text-secondary); }
+    .pro-tips li { margin-bottom: .4rem; }
+
+    @media (max-width: 768px) { h1 { font-size: 1.6rem; } .container { padding: 1.5rem 1rem; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <div class="logo">B2B Objections Cheat Sheet</div>
+    <a href="javascript:history.back()" class="back">&larr; Back</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h1>B2B Objections Cheat Sheet</h1>
+  <p class="subtitle">Click any objection to expand the talk track. Use these in discovery, demos, and negotiations.</p>
+
+  <div class="callout">
+    <strong>Remember:</strong> Objections are buying signals. They mean the prospect is engaged and evaluating. Your job is to de-risk the decision and show them the path forward.
+  </div>
+
+  <div class="toc">
+    <h3>Jump to</h3>
+    <ul>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#migration">Migration</a></li>
+      <li><a href="#technical">Technical</a></li>
+      <li><a href="#competitive">Competitive</a></li>
+      <li><a href="#feature-gaps">Feature Gaps</a></li>
+      <li><a href="#timing">Timing</a></li>
+      <li><a href="#stakeholders">Stakeholders</a></li>
+      <li><a href="#credibility">Credibility</a></li>
+      <li><a href="#closing">Closing</a></li>
+      <li><a href="#frameworks">Frameworks</a></li>
+      <li><a href="#tips">Pro Tips</a></li>
+    </ul>
+  </div>
+
+  <!-- ══════ PRICING ══════ -->
+  <h2 id="pricing">💰 Pricing Objections</h2>
+
+  <details class="objection">
+    <summary>"Shopify Plus is too expensive"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <p>"Let's talk total cost of ownership, not just platform fees. Our customers save an average of <strong>23% on platform costs</strong> and <strong>33% on implementation</strong> compared to competitors."</p>
+      <h4>Proof Points</h4>
+      <ul>
+        <li>Adobe Commerce: <strong>42% higher platform costs</strong></li>
+        <li>BigCommerce: <strong>32% higher platform costs, 88% higher implementation costs</strong></li>
+        <li>WooCommerce: <strong>41% higher operating costs</strong></li>
+      </ul>
+      <p>"You're not just paying for software—you get <strong>300+ new features per year</strong> at no extra cost. Most platforms charge for major feature releases."</p>
+      <h4>ROI Reframe</h4>
+      <blockquote>"Instead of focusing on cost, let's calculate the value. If self-service B2B ordering reduces your cost-to-serve by $40K/year and lifts conversion 8%, what's the payback period on your investment?"</blockquote>
+      <p>Use the <strong>"Calculate the Value of your B2B Opportunity"</strong> framework (available in B2B Product Hub)</p>
+    </div>
+  </details>
+
+  <details class="objection">
+    <summary>"We can't justify the ROI"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <p>"Merchants who re-platform to Shopify see <strong>15% incremental revenue</strong> on average. What would a 15% lift mean for your business?"</p>
+      <ul>
+        <li><strong>Time to value</strong>: Implementations are <strong>20% faster</strong> and you're <strong>66% more likely to launch on time</strong></li>
+        <li>Eliminate manual order processing: <strong>$40K+/year</strong></li>
+        <li>Consolidate systems (separate B2B + DTC platforms): <strong>$80K+/year in platform fees + dev</strong></li>
+        <li>Reduce custom development: <strong>70% reduction in custom code</strong></li>
+      </ul>
+      <h4>Ask Back</h4>
+      <blockquote>"What's the cost of <em>not</em> changing? How much revenue are you leaving on the table with your current limitations?"</blockquote>
+    </div>
+  </details>
+
+  <!-- ══════ MIGRATION ══════ -->
+  <h2 id="migration">🏗️ Migration Concerns</h2>
+
+  <details class="objection">
+    <summary>"Migration is too risky / We've been burned before"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <p>"I hear you—migration risk is real. That's why our merchants are <strong>66% more likely to launch on time</strong> and <strong>3x more likely to finish on budget</strong>."</p>
+      <p>"We don't just 'lift and shift'—we help you <strong>transform</strong>. Most merchants find new capabilities they couldn't do on their old platform."</p>
+      <h4>Case Study</h4>
+      <p>"Gesswein migrated from BigCommerce to Shopify in <strong>6 months</strong>. They not only solved their ERP integration issues but freed up resources from maintenance to focus on innovation."</p>
+      <h4>Video Resource</h4>
+      <p>"Moving Beyond Migration to Transformation" (3:15 min) — B2B Bites series</p>
+    </div>
+  </details>
+
+  <details class="objection">
+    <summary>"How long will implementation take?"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <p>"On average, Shopify implementations are <strong>20% faster than competitors</strong>. For B2B specifically, we typically see 3–6 months for mid-market and 6–12 months for enterprise."</p>
+      <p>"We have <strong>hundreds of thousands of agency partners</strong> who specialize in B2B migrations. I can connect you with 3 agencies who've done similar projects in your industry."</p>
+    </div>
+  </details>
+
+  <details class="objection">
+    <summary>"We can't afford downtime / We can't disrupt our business"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <p>"We handle this in phases—you keep running on your current platform while we build in parallel. On cutover day, it's a DNS switch. Many merchants launch over a weekend with zero downtime."</p>
+      <p>"You can also run a <strong>pilot</strong> with a subset of customers or products first, validate it works, then roll out fully."</p>
+    </div>
+  </details>
+
+  <!-- ══════ TECHNICAL ══════ -->
+  <h2 id="technical">🔌 Technical / Integration Objections</h2>
+
+  <details class="objection">
+    <summary>"We have a complex ERP integration (SAP, NetSuite, etc.)"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <p>"We have specialized integration partners like <strong>TMG Fuse</strong> and <strong>Zab</strong> who've done 100+ SAP/NetSuite integrations with Shopify. They sync orders, inventory, and customer data in real-time."</p>
+      <p>"Unlike platforms that require custom code for every integration, we have pre-built connectors that reduce integration time by 50–70%."</p>
+      <p>"We also have robust APIs—<strong>over 21,000 apps</strong> in our ecosystem, many built specifically for ERP sync."</p>
+      <h4>Video Resource</h4>
+      <p>"Winning the Integration Conversation" (4:27 min) — B2B Bites</p>
+    </div>
+  </details>
+
+  <details class="objection">
+    <summary>"Our needs are too complex / We need heavy customization"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <p>"I'd challenge that assumption. What we see is that <strong>70% of 'custom' requirements</strong> are actually solved by out-of-the-box features or existing apps."</p>
+      <p>"Let's walk through your requirements. Often what required custom dev on your old platform is native in Shopify—like payment terms, volume pricing, or company accounts."</p>
+      <p>"And where you <em>do</em> need customization, our platform is built for it—<strong>Shopify Functions</strong> let you extend checkout, payment, and fulfillment logic without touching core code."</p>
+      <h4>Reframe</h4>
+      <blockquote>"The question isn't 'Can Shopify do what our current platform does?' It's 'What can Shopify help us do that we <em>can't</em> do today?'"</blockquote>
+    </div>
+  </details>
+
+  <details class="objection">
+    <summary>"We need [specific feature] that Shopify doesn't have"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <p>"Let's talk about that. What's the business problem you're trying to solve?" <em>(Dig into the why behind the feature)</em></p>
+      <p>"Often there's an alternative approach that achieves the same outcome. For example, if you need subscription billing for B2B, we have apps like Recharge or Bold that handle that."</p>
+      <p>"We also ship <strong>300+ features per year</strong>. What's on your 'must-have' list? I can check the roadmap or escalate it to our product team."</p>
+      <h4>If It's a Real Gap</h4>
+      <p>"You're right, we don't have [feature] natively today. But here's what we <em>do</em> have [alternative solution]. Would that solve 80% of your need?"</p>
+      <p>"I can also connect you with our Solutions Engineering team to explore custom solutions or app integrations."</p>
+    </div>
+  </details>
+
+  <!-- ══════ COMPETITIVE ══════ -->
+  <h2 id="competitive">🥊 Competitive Objections</h2>
+
+  <details class="objection">
+    <summary>"We're already on BigCommerce — why switch?"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <p>"BigCommerce is a solid platform, but here's where we see merchants switch: <strong>native B2B features</strong>. On BigCommerce, you need apps like Bundleb2b or custom dev for features like company accounts, payment terms, and checkout to draft—those are built into Shopify."</p>
+      <ul>
+        <li><strong>Implementation cost</strong>: BigCommerce implementations cost <strong>88% more</strong> than Shopify on average</li>
+        <li><strong>Case study</strong>: Gesswein was on BigCommerce and switched specifically for better ERP integration and B2B workflows. They migrated in 6 months.</li>
+      </ul>
+      <p><strong>Competitive Battlecard:</strong> Reference Klue Card ID 3010795 (B2B Feature Comparison)</p>
+    </div>
+  </details>
+
+  <details class="objection">
+    <summary>"We need enterprise-grade like Magento / Adobe Commerce"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <p>"I get it—Magento has a reputation for 'enterprise.' But let's talk about what that really means: <strong>high total cost of ownership</strong>."</p>
+      <ul>
+        <li><strong>Cost</strong>: Adobe Commerce has <strong>42% higher platform costs</strong> and <strong>24% higher operating costs</strong></li>
+        <li><strong>Complexity</strong>: Most Magento merchants spend more time maintaining custom code than innovating. Merchants tell us they eliminated 70% of their custom code by moving to Shopify.</li>
+        <li><strong>Recognition</strong>: <strong>Forrester Leader</strong> in B2B Commerce (2024) and <strong>Gartner Leader</strong> in Digital Commerce (3 years running)</li>
+      </ul>
+      <p>"We're enterprise-grade, but without the enterprise headache."</p>
+    </div>
+  </details>
+
+  <details class="objection">
+    <summary>"Salesforce Commerce Cloud is the gold standard"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <p>"SFCC is powerful, but it's built for massive enterprise retail, not mid-market B2B. Here's the difference:"</p>
+      <ul>
+        <li><strong>Implementation</strong>: SFCC takes 12–18 months. Shopify is 3–6 months.</li>
+        <li><strong>Cost</strong>: SFCC implementations run $500K–$2M+. You'll spend more on implementation than you will on Shopify in 5 years.</li>
+        <li><strong>Checkout</strong>: Our checkout converts <strong>up to 36% better</strong> than SFCC according to third-party benchmarks.</li>
+      </ul>
+      <p>"SFCC makes sense for Fortune 100 retailers. For B2B, you'll spend less and launch faster with Shopify."</p>
+    </div>
+  </details>
+
+  <details class="objection">
+    <summary>"We've heard Shopify is just for DTC / small businesses"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <p>"That was true 10 years ago. Today, we power <strong>Carrier, Mattel, Staples, Heinz</strong>—brands doing billions in GMV."</p>
+      <ul>
+        <li><strong>B2B</strong>: We've shipped <strong>45+ B2B features</strong> since 2022. <strong>Forrester Leader in B2B Commerce</strong> as of 2024.</li>
+        <li><strong>Scale</strong>: We processed <strong>$1.6 trillion in GMV</strong> since inception. We're built to scale.</li>
+      </ul>
+      <p>"The difference is we don't <em>only</em> serve enterprise. We give you enterprise capabilities with mid-market speed and cost."</p>
+    </div>
+  </details>
+
+  <!-- ══════ FEATURE GAPS ══════ -->
+  <h2 id="feature-gaps">🚧 Feature Gap Objections</h2>
+
+  <details class="objection">
+    <summary>"Shopify doesn't support subscriptions / EDI / advanced workflows"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <ul>
+        <li><strong>Subscriptions</strong>: Best-in-class apps like Recharge, Bold, and Skio. Native integration, complex subscription logic.</li>
+        <li><strong>EDI</strong>: Partners like SPS Commerce and TrueCommerce handle EDI transactions — 850s, 810s, 856s, etc.</li>
+        <li><strong>Advanced workflows</strong>: Shopify Flow automates complex workflows — approval processes, inventory rules, customer tagging. Visual, no-code automation.</li>
+      </ul>
+      <h4>Reframe</h4>
+      <blockquote>"We build the core commerce platform and let best-in-class partners build specialized functionality. That means you get the best EDI solution, not a mediocre one built by a commerce platform."</blockquote>
+    </div>
+  </details>
+
+  <details class="objection">
+    <summary>"We need multi-currency / multi-language / international"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <ul>
+        <li>We support <strong>20+ currencies</strong> and <strong>133+ countries</strong> out of the box</li>
+        <li>Shopify Markets handles international expansion — localized pricing, duties/taxes, local payment methods, translated storefronts</li>
+        <li>For B2B: <strong>Markets + Catalogs</strong> (launched 2025) — manage international B2B customers with region-specific pricing and products</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ══════ TIMING ══════ -->
+  <h2 id="timing">⏱️ Urgency / Timing Objections</h2>
+
+  <details class="objection">
+    <summary>"We're not ready to make a change right now"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <p>"I understand. When would be the right time?" <em>(Uncover the real blocker)</em></p>
+      <p>"Here's the risk of waiting: every month on your current platform is lost opportunity. If we could help you grow revenue by 15% or reduce costs by $50K/year, how much is waiting costing you?"</p>
+      <h4>Create Urgency</h4>
+      <blockquote>"We're seeing a lot of activity in [their industry]. Your competitors are moving to self-service B2B. If you wait 12 months, you'll be at a disadvantage."</blockquote>
+    </div>
+  </details>
+
+  <details class="objection">
+    <summary>"Our contract doesn't renew until next year"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <p>"That's actually perfect timing. Let's start discovery now so we can plan a smooth transition when your contract ends. Most migrations take 3–6 months, so starting the conversation now puts you in a great position."</p>
+      <p>"We can also explore <strong>early termination</strong> if the ROI justifies it. Some merchants find the cost of buying out their contract is less than the revenue they'd gain by switching sooner."</p>
+    </div>
+  </details>
+
+  <!-- ══════ STAKEHOLDERS ══════ -->
+  <h2 id="stakeholders">👥 Internal Stakeholder Objections</h2>
+
+  <details class="objection">
+    <summary>"Our dev team says it's too much work"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <p>"Let's get them in the room. Most dev teams <em>love</em> Shopify once they see it — clean APIs, well-documented, modern tech stack."</p>
+      <p>"Here's what we hear from devs who switch: 'I spend 80% less time on maintenance and 80% more time building features that matter.'"</p>
+      <p>"We have a <strong>sandbox environment</strong> they can spin up in 10 minutes to test. Let's let them kick the tires."</p>
+    </div>
+  </details>
+
+  <details class="objection">
+    <summary>"Leadership is risk-averse / We need a safe bet"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <p>"I get it — this is a big decision. Here's why Shopify is the safe bet:"</p>
+      <ul>
+        <li><strong>Analyst validation</strong>: Forrester Leader, Gartner Leader</li>
+        <li><strong>Scale</strong>: $1.6T+ GMV, 875M+ shoppers, 10% of US ecommerce</li>
+        <li><strong>Innovation</strong>: $1.5B+ in R&D annually, 300+ features/year</li>
+        <li><strong>Stability</strong>: 99.99% uptime SLA</li>
+      </ul>
+      <p>"You're not taking a risk — you're de-risking by going with the market leader."</p>
+    </div>
+  </details>
+
+  <details class="objection">
+    <summary>"We need to see a demo / proof of concept first"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <p>"Absolutely. I'll set up a <strong>customized demo</strong> focused on your specific use cases — payment terms, volume pricing, company accounts, whatever matters to you."</p>
+      <p>"We also have <strong>interactive click-through demos</strong> you can share with stakeholders. And if needed, we can do a <strong>paid pilot</strong> with a subset of your business to prove ROI before full migration."</p>
+    </div>
+  </details>
+
+  <!-- ══════ CREDIBILITY ══════ -->
+  <h2 id="credibility">📊 Credibility / Trust Objections</h2>
+
+  <details class="objection">
+    <summary>"We've never heard of Shopify doing B2B at our scale"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <p>"Fair question. Here are some B2B customers:"</p>
+      <ul>
+        <li><strong>Carrier</strong> — HVAC manufacturing (Enterprise)</li>
+        <li><strong>Industry West</strong> — Commercial furniture (Enterprise)</li>
+        <li><strong>Snyder Performance</strong> — Automotive parts (Plus)</li>
+        <li><strong>Allied Medical</strong> — Healthcare distribution (Plus)</li>
+      </ul>
+      <p>"We're also a <strong>Forrester Leader in B2B Commerce Platforms</strong> as of 2024. We're not new to this."</p>
+    </div>
+  </details>
+
+  <details class="objection">
+    <summary>"How do we know Shopify is committed to B2B long-term?"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <ul>
+        <li>We've shipped <strong>45+ B2B features</strong> in the last 2 years — payment terms, company accounts, volume pricing, checkout to draft, and more</li>
+        <li>We release features in <strong>Shopify Editions</strong> every quarter. B2B is a core focus.</li>
+        <li>Strategic acquisitions like Deliverr (now Shopify Fulfillment Network) to support B2B logistics needs</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- ══════ CLOSING ══════ -->
+  <h2 id="closing">🎯 Closing Objections</h2>
+
+  <details class="objection">
+    <summary>"We need to think about it"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <p>"Of course. What specifically do you need to think about?" <em>(Flush out the real objection)</em></p>
+      <p>"Is there something we haven't covered that would help you make a decision?"</p>
+      <p>"What would need to be true for you to move forward?"</p>
+    </div>
+  </details>
+
+  <details class="objection">
+    <summary>"Send me a proposal and we'll review internally"</summary>
+    <div class="body">
+      <h4>Answer</h4>
+      <p>"Happy to. Before I do, let me make sure I understand your priorities. What are the top 3 things leadership will evaluate this on?" <em>(Budget, timeline, features, ROI?)</em></p>
+      <p>"Let's schedule a follow-up for next week to walk through the proposal together. That way I can answer questions in real-time."</p>
+    </div>
+  </details>
+
+  <!-- ══════ FRAMEWORKS ══════ -->
+  <h2 id="frameworks">🛠️ Objection Handling Frameworks</h2>
+
+  <div class="framework">
+    <h3>The 4-Step Objection Framework</h3>
+    <ol>
+      <li><strong>Acknowledge:</strong> "I understand where you're coming from."</li>
+      <li><strong>Clarify:</strong> "Can you tell me more about [objection]?"</li>
+      <li><strong>Respond:</strong> Address with proof points, case studies, ROI</li>
+      <li><strong>Confirm:</strong> "Does that address your concern?"</li>
+    </ol>
+  </div>
+
+  <div class="framework">
+    <h3>The FEEL-FELT-FOUND Method</h3>
+    <ul>
+      <li>"I understand how you <strong>feel</strong>."</li>
+      <li>"Other merchants have <strong>felt</strong> the same way."</li>
+      <li>"What they <strong>found</strong> was [insert success story]."</li>
+    </ul>
+    <p style="margin-top:.75rem;"><strong>Example:</strong> "I understand how you feel about migration risk. Other merchants felt the same way before switching. What they found was that with our partner ecosystem and phased approach, they launched on time with zero downtime—and unlocked new revenue streams they couldn't do before."</p>
+  </div>
+
+  <!-- ══════ PRO TIPS ══════ -->
+  <h2 id="tips">💡 Pro Tips</h2>
+
+  <div class="pro-tips">
+    <ol>
+      <li><strong>Never dodge an objection</strong> — Acknowledge it head-on</li>
+      <li><strong>Use proof points</strong> — Stats, case studies, analyst validation</li>
+      <li><strong>Reframe</strong> — Turn objections into opportunities ("That's exactly why merchants switch")</li>
+      <li><strong>Ask back</strong> — "What would it take to solve that concern?"</li>
+      <li><strong>Third-party validate</strong> — Forrester, Gartner, customer testimonials</li>
+      <li><strong>ROI over features</strong> — Always tie back to business outcomes</li>
+    </ol>
+  </div>
+
+  <!-- ══════ RESOURCES ══════ -->
+  <h2>📚 Key Resources</h2>
+  <div class="framework">
+    <ul>
+      <li><strong>B2B Product Hub</strong> (Vault): All objection handling decks, battlecards, videos</li>
+      <li><strong>Q3/Q4 2025 Objection Handling Deck</strong> (in B2B Product Hub)</li>
+      <li><strong>Klue Battlecards</strong> (app.klue.com): Competitive intelligence, Card ID 3010795</li>
+      <li><strong>B2B Bites Videos</strong>:
+        <ul>
+          <li>"Moving Beyond Migration to Transformation" (3:15)</li>
+          <li>"Winning the Integration Conversation" (4:27)</li>
+          <li>"What User Friendly Means in B2B" (3:24)</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<footer style="max-width:960px; margin:auto; padding:2rem; text-align:center; color:#5f6876; font-size:.85rem; border-top:1px solid #e2e6ed;">
+  <p>Last updated <span id="last-updated"></span> · Maintained by the B2B Sales Team</p>
+</footer>
+
+<script>document.getElementById('last-updated').textContent = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });</script>
+
+</body>
+</html>
